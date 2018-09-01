@@ -4,12 +4,6 @@ const request = require('request');
 const PDFKit = require('pdfkit');
 const imageSize = require('image-size');
 
-// let downloader = downloadAll('http://online.fliphtml5.com/fumf/jrlc/files/large/', 266, '.jpg');
-// downloader.next();
-
-// const nameInput = document.getElementById('name-input');
-// const lengthInput = document.getElementById('length-input');
-// const formatInput = document.getElementById('format-input');
 const urlInput = document.getElementById('url-input');
 const downloadButton = document.getElementById('download-button');
 const baseDir = __dirname + '/../';
@@ -21,10 +15,6 @@ let filename = "";
 let length = 0;
 let format = '.jpg';
 function downloadButtonClicked() {
-    // filename = (nameInput.value || "Output")+'.pdf';
-    // length = parseInt(lengthInput.value);
-    // format = formatInput.value || '.jpg';
-
     if (!fs.existsSync(imagesTempFolder)) {
         fs.mkdirSync(imagesTempFolder);
     }
@@ -43,7 +33,7 @@ function downloadButtonClicked() {
 }
 
 let done = false;
-function* downloadAll(url, length, format){ // give final url
+function* downloadAll(url, length, format){
     done = false;
     for (let i = 1; i <= length; i++){
         console.log(`Downloading page ${i}/${length}`);
