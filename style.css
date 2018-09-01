@@ -1,0 +1,9 @@
+body {
+    padding: 20px;    
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+}

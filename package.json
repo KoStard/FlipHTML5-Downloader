@@ -1,0 +1,30 @@
+{
+  "name": "fliphtml5downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [
+    "fliphtml5",
+    "dshh"
+  ],
+  "author": "KoStard",
+  "license": "ISC",
+  "dependencies": {
+    "image-size": "^0.6.3",
+    "pdfkit": "^0.8.3",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "electron": "^2.0.8",
+    "electron-packager": "^12.1.1"
+  },
+  "build": {
+    "extraResources": [
+      "./extraResources/**"
+    ]
+  }
+}
