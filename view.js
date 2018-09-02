@@ -7,7 +7,7 @@ const imageSize = require('image-size');
 const urlInput = document.getElementById('url-input');
 const downloadButton = document.getElementById('download-button');
 const baseDir = __dirname + '/../';
-const imagesTempFolder = baseDir + 'temp/';
+let imagesTempFolder = baseDir + 'temp/';
 
 downloadButton.onclick = downloadButtonClicked;
 let downloader;
@@ -15,9 +15,6 @@ let filename = "";
 let length = 0;
 let format = '.jpg';
 function downloadButtonClicked() {
-    if (!fs.existsSync(imagesTempFolder)) {
-        fs.mkdirSync(imagesTempFolder);
-    }
     let rawURL = urlInput.value; 
     request(rawURL, (err, resp, body) => {
         let m = body.match(/[\s\S]*pages:\s*"?(\d+)"?,\s*title:\s*"([^"]+)",/); //
@@ -26,6 +23,12 @@ function downloadButtonClicked() {
         let finalURL = 'http://online.' + rawURL.match(/(?:http(?:s)?:\/\/)([\s\S]*)/)[1] + '/files/large/';
         console.log(`URL - ${finalURL}`);
         console.log(`Filename - ${filename}`);
+        
+        imagesTempFolder = baseDir + m[2]+'/';
+        if (!fs.existsSync(imagesTempFolder)) {
+            fs.mkdirSync(imagesTempFolder);
+        }
+
         downloader = downloadAll(finalURL, length, format);
         downloader.next();
     });
